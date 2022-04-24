@@ -20,11 +20,11 @@ for i in range(0,layer_max):
         print('All folders are empty. Please check your layer folders.')
         sys.exit()
 
-print('The image in the following folder is going to use for NFT generation' + '\n' + str(non_empty_layer_list))
+# print('The image in the following folder is going to use for NFT generation' + '\n' + str(non_empty_layer_list))
 
 # Test for image merge and save to save folder
 
-layer_0 = glob.glob(home_folder + '\image_layer_0' + '\*.png')
+'''layer_0 = glob.glob(home_folder + '\image_layer_0' + '\*.png')
 print('Opening'+layer_0[0])
 im_0 = Image.open(layer_0[0])
 
@@ -35,4 +35,15 @@ im_1 = Image.open(layer_1[0])
 im_merge = Image.new('RGBA',im_0.size)
 im_merge.paste(im_0,(0,0),im_0)
 im_merge.paste(im_1,(0,0),im_1)
-im_merge.save(save_folder + '001.png')
+im_merge.save(save_folder + '001.png')'''
+
+# Dictionary
+# Key: Non empty layer folder path
+# Value: list of image path within the folder
+
+nft_dict = {}
+for layer in non_empty_layer_list:
+    image_list = glob.glob(layer + '\*.png')
+    nft_dict.setdefault(str(layer), image_list)
+
+
